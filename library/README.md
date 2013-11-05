@@ -9,6 +9,8 @@ $ java -jar target/library-0.0.1-SNAPSHOT.jar server config/library_a_config.yml
 # To launch Library B instance
 $ java -jar target/library-0.0.1-SNAPSHOT.jar server config/library_b_config.yml 
 
+java -jar target/procurement-service-0.0.1-SNAPSHOT.jar server config/procurement-service_config.yml 
+
 # How to run this Java process forever
 $ nohup ./bin/library_a.sh 0<&- &> /tmp/app-a.log &
 $ nohup ./bin/library_b.sh 0<&- &> /tmp/app-b.log &

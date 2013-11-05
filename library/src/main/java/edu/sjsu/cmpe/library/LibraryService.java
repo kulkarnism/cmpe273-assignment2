@@ -44,6 +44,11 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private static String qName;
     private static String tName;
+    private static String userName;
+    private static String passwordName;
+    private static String hostName;
+    private static String portName;
+    
     public static BookRepositoryInterface bookRepository;
     
     public static void main(String[] args) throws Exception {
@@ -56,10 +61,11 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
 	    @Override
 	    public void run() {
 	    	try{
-	    	String user =  "admin";
-	    	String password =  "password";
-	    	String host =  "54.215.210.214";
-	    	int port = Integer.parseInt("61613");
+	       	
+	    	String user =  LibraryService.userName;//"admin";
+	    	String password =  LibraryService.passwordName;//"password";
+	    	String host =  LibraryService.hostName;//"54.215.210.214";
+	    	int port = Integer.parseInt(LibraryService.portName);
 	    	String destination = tName;
 
 	    	StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
@@ -98,8 +104,7 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
 	    	    	System.out.println("Hashmap does not contain this book");
 	    	    	Book newBook= new Book();
 	    	    	newBook.setIsbn(isbn);
-	    	    	newBook.setCategory(token[3]);
-	    	    	System.out.println(token[3]);
+	    	    	newBook.setCategory(token[3]);	    	    	
 	    	    	newBook.setCoverimage(new URL(token[5]));	    	
 	    	    	newBook.setStatus("available");
 	    	    	newBook.setTitle(token[1]);
@@ -122,14 +127,12 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
 	    	connection.close();}catch(Exception e){System.out.println("Exception::"+e.getMessage());}
 	    }
 
-	};
-	
+	};	
 	System.out.println("About to submit the background task");
 	executor.execute(backgroundTask);
 	System.out.println("Submitted the background task");
 	executor.shutdown();
-	
-    }
+	}
 
     @Override
     public void initialize(Bootstrap<LibraryServiceConfiguration> bootstrap) {
@@ -144,6 +147,12 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
 	// This is how you pull the configurations from library_x_config.yml
 	String queueName = configuration.getStompQueueName();
 	String topicName = configuration.getStompTopicName();
+	LibraryService.userName= configuration.getapolloUser();
+	LibraryService.passwordName= configuration.getapolloPassword();
+	LibraryService.hostName =  configuration.getapolloHost();
+	LibraryService.portName= configuration.getapolloPort();
+	
+	log.debug(LibraryService.userName+" "+LibraryService.passwordName+" "+LibraryService.hostName+" "+LibraryService.portName);
 	log.debug("Queue name is {}. Topic name is {}", queueName,
 		topicName);
 	/** Root API */
@@ -174,5 +183,23 @@ public class LibraryService extends Service<LibraryServiceConfiguration> {
 
 	public static void settName(String tName) {
 		LibraryService.tName = tName;
+	}
+	
+	public static String getUname()
+	{
+		return userName;
+	}
+	
+	public static String getPassword()
+	{
+		return passwordName;
+	}
+	public static String getHost()
+	{
+		return hostName;
+	}
+	public static String getPort()
+	{
+		return portName;
 	}
 }

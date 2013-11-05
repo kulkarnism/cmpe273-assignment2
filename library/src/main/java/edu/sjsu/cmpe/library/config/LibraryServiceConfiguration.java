@@ -13,6 +13,40 @@ public class LibraryServiceConfiguration extends Configuration {
     @NotEmpty
     @JsonProperty
     private String stompTopicName;
+    
+    @NotEmpty
+    @JsonProperty
+    private String apolloUser;
+
+    @NotEmpty
+    @JsonProperty
+    private String apolloPassword;
+    
+    @NotEmpty
+    @JsonProperty
+    private String apolloHost;
+    
+    @NotEmpty
+    @JsonProperty
+    private String apolloPort;
+    
+    public String getapolloUser()
+    {
+    	return apolloUser;
+    }
+    
+    public String getapolloPassword()
+    {
+    	return apolloPassword;
+    }
+    public String getapolloHost()
+    {
+    	return apolloHost;
+    }
+    public String getapolloPort()
+    {
+    	return apolloPort;
+    }
 
     /**
      * @return the stompQueueName

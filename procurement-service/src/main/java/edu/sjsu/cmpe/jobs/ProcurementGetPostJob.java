@@ -120,11 +120,6 @@ public class ProcurementGetPostJob extends Job{
     	}
         
     	BookDetails book=resp.getEntity(BookDetails.class);
-    	System.out.println(book.getShipped_books().length);
-    	for(int i=0;i<book.getShipped_books().length;i++)
-    	{
-    		System.out.println(book.getShipped_books()[i].getTitle());
-    	}
     	
     	/* Publish to different topics based on category*/
     	String user = "admin";

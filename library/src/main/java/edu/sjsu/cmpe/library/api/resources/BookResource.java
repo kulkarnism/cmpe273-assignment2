@@ -112,10 +112,10 @@ public class BookResource {
 		String topicName = LibraryService.gettName();
 		System.out.println("QueueName:"+queueName+"  TopicName"+topicName);
 		
-		String user =  "admin";
-		String password = "password";
-		String host = "54.215.210.214";
-		int port = Integer.parseInt("61613");
+		String user = LibraryService.getUname(); //"admin";
+		String password = LibraryService.getPassword();//"password";
+		String host = LibraryService.getPassword();//"54.215.210.214";
+		int port = Integer.parseInt(LibraryService.getPort());
 		String queue = queueName;
 		String destination = queue;
 
