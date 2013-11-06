@@ -7,7 +7,6 @@
 	<artifactId>procurement-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Procurement Service Scheduler</name>
-
 	<properties>
 		<dropwizard.version>0.6.2</dropwizard.version>
 	</properties>
@@ -27,9 +26,7 @@
 			<id>Fusesource Snapshots</id>
 			<url>http://repo.fusesource.com/nexus/content/repositories/snapshots</url>
 		</repository>
-
 	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.yammer.dropwizard</groupId>
@@ -69,38 +66,6 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-
-			<!-- include all the dependencies into the jar so it's easier to execute 
-				the example.pubsub -->
-			<plugin>
-				<groupId>org.fusesource.mvnplugins</groupId>
-				<artifactId>maven-uberize-plugin</artifactId>
-				<version>1.14</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>uberize</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- executable single jar -->
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>example.pubsub.Publisher</mainClass>
-						</manifest>
-					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -168,26 +133,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<!-- You'll probably want to remove this for your project. I'm just using 
-					it here so that dropwizard-example doesn't get deployed as a library. -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.7</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<skip>true</skip>
-					<skipDeploy>true</skipDeploy>
-				</configuration>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 </project>

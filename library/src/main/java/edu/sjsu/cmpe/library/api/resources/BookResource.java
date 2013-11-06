@@ -95,7 +95,7 @@ public class BookResource {
     @PUT
     @Path("/{isbn}")
     @Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Timed(name = "update-book-status")
     public Response updateBookStatus(@PathParam("isbn") Long isbn,@QueryParam("status")String status)throws JMSException {
 	Book book = bookRepository.getBookByISBN(isbn);	
@@ -114,7 +114,7 @@ public class BookResource {
 		
 		String user = LibraryService.getUname(); //"admin";
 		String password = LibraryService.getPassword();//"password";
-		String host = LibraryService.getPassword();//"54.215.210.214";
+		String host = LibraryService.getHost();//"54.215.210.214";
 		int port = Integer.parseInt(LibraryService.getPort());
 		String queue = queueName;
 		String destination = queue;
